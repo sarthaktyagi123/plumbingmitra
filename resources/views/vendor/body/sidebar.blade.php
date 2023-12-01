@@ -46,26 +46,6 @@
 						 
 					</ul>
 				</li>
-				<!-- //item list of kaushik udhyog -->
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='lni lni-fresh-juice'></i>
-						</div>
-						<div class="menu-title">Item list</div>
-					</a>
-					<ul>
-						<li> <a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='lni lni-fresh-juice'></i>
-						</div>
-						<div class="menu-title">category</div>
-					</a>
-						<ul>
-						<li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>sub-category</a>
-						</li>
-					</ul>
-						</li>
-					</ul>
-				</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-cart"></i>

@@ -139,14 +139,14 @@ class StripeController extends Controller
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
             'district_id' => $request->district_id,
-            'state_id' => "2" ,
+            'state_id' => $request->state_id,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'adress' => $request->address,
             'post_code' => $request->post_code,
             'notes' => $request->notes,
-// $request->state_id
+
             'payment_type' => 'Cash On Delivery',
             'payment_method' => 'Cash On Delivery',
             
@@ -178,7 +178,7 @@ class StripeController extends Controller
 
         ];
 
-        // Mail::to($request->email)->send(new OrderMail($data));
+        Mail::to($request->email)->send(new OrderMail($data));
 
         // End Send Email 
 

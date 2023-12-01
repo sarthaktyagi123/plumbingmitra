@@ -21,46 +21,27 @@ class CategoryController extends Controller
 
 
 
-    public function StoreCategory(Request $request)
-    {
-        // Initialize $save_url to null
-        $save_url = null;
-    
-        // Check if a file was uploaded
-        if ($request->hasFile('category_image')) {
-            // Get the uploaded file
-            $image = $request->file('category_image');
-    
-            // Generate a unique name for the file
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-    
-            // Resize and save the image
-            Image::make($image)->resize(120, 120)->save('upload/category/' . $name_gen);
-    
-            // Set the file URL
-            $save_url = 'upload/category/' . $name_gen;
-        }
-    
-        // Insert category details into the database
+ public function StoreCategory(Request $request){
+
+        $image = $request->file('category_image');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(120,120)->save('upload/category/'.$name_gen);
+        $save_url = 'upload/category/'.$name_gen;
+
         Category::insert([
             'category_name' => $request->category_name,
-            'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
-            'category_image' => $save_url,
+            'category_slug' => strtolower(str_replace(' ', '-',$request->category_name)),
+            'category_image' => $save_url, 
         ]);
-    
-        // Set the default message if no image is uploaded
-        $message = $save_url ? 'Category Inserted Successfully' : 'Category Inserted Successfully (No Image Uploaded)';
-    
-        // Set the notification message
-        $notification = [
-            'message' => $message,
-            'alert-type' => 'success',
-        ];
-    
-        // Redirect with the notification
-        return redirect()->route('all.category')->with($notification);
-    }
-    // End Method 
+
+       $notification = array(
+            'message' => 'Category Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.category')->with($notification); 
+
+    }// End Method 
 
 
 

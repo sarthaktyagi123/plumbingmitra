@@ -21,19 +21,19 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //Admin 
             [
-                'name' => 'sarthak',
+                'name' => 'Sarthak',
                 'username' => 'admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'sarthaktyagi11211@gmail.com',
                 'password' => Hash::make('111'),
                 'role' => 'admin',
                 'status' => 'active',
 
             ],
-              //Vendor 
+              //Vendor or shop
             [
-                'name' => 'shop/party',
-                'username' => 'vendor',
-                'email' => 'testing@gmail.com',
+                'name' => 'Random user',
+                'username' => 'vendor/shop',
+                'email' => 'tester@gmail.com',
                 'password' => Hash::make('111'),
                 'role' => 'vendor',
                 'status' => 'active',
@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'User',
                 'username' => 'user',
-                'email' => 'usertesting@gmail.com',
+                'email' => 'usertest@gmail.com',
                 'password' => Hash::make('111'),
                 'role' => 'user',
                 'status' => 'active',

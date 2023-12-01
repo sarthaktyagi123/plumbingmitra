@@ -55,10 +55,10 @@
 
 
 
-			  <div class="form-group mb-3">
+			 <div class="form-group mb-3">
 				<label for="inputProductDescription" class="form-label">Short Description</label>
 				<textarea name="short_descp" class="form-control" id="inputProductDescription" rows="3"></textarea>
-			  </div>
+			  </div> 
 
 			   <div class="mb-3">
 				<label for="inputProductDescription" class="form-label">Long Description</label>
@@ -67,7 +67,7 @@
 
 
 
-  <div class="form-group mb-3">
+ <div class="form-group mb-3">
 				<label for="inputProductTitle" class="form-label">Main Thambnail</label>
 				<input name="product_thambnail" class="form-control" type="file" id="formFile" onChange="mainThamUrl(this)" >
 
@@ -76,13 +76,13 @@
 
 
 
-  <div class="form-group mb-3">
+   <div class="form-group mb-3">
 				<label for="inputProductTitle" class="form-label">Multiple Image</label>
 				<input class="form-control" name="multi_img[]" type="file" id="multiImg" multiple="">
 
 			<div class="row" id="preview_img"></div>
 
-			  </div>
+			  </div> 
 
 
 			 

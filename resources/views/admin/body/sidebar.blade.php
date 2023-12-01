@@ -40,7 +40,8 @@
 					</ul>
 				</li>
 				@endif
-				@if(Auth::user()->can('cat.menu'))
+
+                 @if(Auth::user()->can('cat.menu'))
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>
@@ -400,6 +401,5 @@
 					</a>
 				</li>
 			</ul>
-
 			<!--end navigation-->
 		</div>
