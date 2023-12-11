@@ -30,8 +30,7 @@
 								<thead>
 			<tr>
 				<th>Sl</th>
-				<th>Brand Name </th>
-				<th>Brand Image </th>
+				<th>Company Name </th>
 				<th>Action</th> 
 			</tr>
 		</thead>
@@ -40,8 +39,7 @@
 			<tr>
 				<td> {{ $key+1 }} </td>
 				<td>{{ $item->brand_name }}</td>
-				<td> <img src="{{ asset($item->brand_image) }}" style="width: 70px; height:40px;" >  </td>
-				
+							
 				<td>
   @if(Auth::user()->can('brand.edit'))
 <a href="{{ route('edit.brand',$item->id) }}" class="btn btn-info">Edit</a>
@@ -58,8 +56,7 @@
 		<tfoot>
 			<tr>
 				<th>Sl</th>
-				<th>Brand Name </th>
-				<th>Brand Image </th>
+				<th>Company Name </th>
 				<th>Action</th> 
 			</tr>
 		</tfoot>

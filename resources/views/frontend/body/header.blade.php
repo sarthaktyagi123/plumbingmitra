@@ -225,7 +225,7 @@ $setting = App\Models\SiteSetting::find(1);
 
         @php
 
-    $categories = App\Models\Category::orderBy('category_name','ASC')->get();
+    $categories = App\Models\Brand::orderBy('brand_name','ASC')->get();
         @endphp
 
 
@@ -233,7 +233,7 @@ $setting = App\Models\SiteSetting::find(1);
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" /></a>
+                        <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logoo.jpg') }}" alt="logo" /></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
@@ -245,9 +245,9 @@ $setting = App\Models\SiteSetting::find(1);
     <div class="d-flex categori-dropdown-inner">
         <ul>
             @foreach($categories as $item)
-                @if($loop->index < 5)
+                @if($loop->index < 7)
             <li>
-                <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->brand_name }} </a>
             </li>
             @endif
            @endforeach
@@ -256,7 +256,7 @@ $setting = App\Models\SiteSetting::find(1);
              @foreach($categories as $item)
              @if($loop->index > 4)
             <li>
-                <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->category_name }} </a>
+                <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"> <img src="{{ asset( $item->category_image ) }}" alt="" /> {{ $item->brand_name }} </a>
             </li>
               @endif
            @endforeach
@@ -297,22 +297,14 @@ $setting = App\Models\SiteSetting::find(1);
     
         @php
 
-    $categories = App\Models\Category::orderBy('category_name','ASC')->limit(6)->get();
+    $categories = App\Models\Brand::orderBy('brand_name','ASC')->limit(4)->get();
         @endphp
 
        @foreach($categories as $category)    
         <li>
-            <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }} <i class="fi-rs-angle-down"></i></a>
+            <a href="{{ url('product/category/'.$category->id.'/'.$category->brand_slug) }}">{{ $category->brand_name }} <i class="fi-rs-angle-down"></i></a>
 
-   @php 
-    $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
-        @endphp
 
-            <ul class="sub-menu">
-                @foreach($subcategories as $subcategory)   
-                <li><a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a></li>
-                @endforeach
-            </ul>
         </li>
         @endforeach
 
@@ -330,14 +322,7 @@ $setting = App\Models\SiteSetting::find(1);
 </div>
 
 
-<div class="hotline d-none d-lg-flex">
-    <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-    @if($setting)
-        <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
-    @else
-        <p>Default Support Phone<span>24/7 Support Center</span></p>
-    @endif
-</div>
+
 <div class="header-action-icon-2 d-block d-lg-none">
     <div class="burger-icon burger-icon-white">
         <span class="burger-icon-top"></span>
@@ -433,7 +418,7 @@ $setting = App\Models\SiteSetting::find(1);
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
                 <div class="mobile-header-logo">
-                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" alt="logo" /></a>
+                    <a href="index.html"><img src="{{ asset('frontend/assets/imgs/theme/logoo.jpg') }}" alt="logo" /></a>
                 </div>
                 <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                     <button class="close-style search-close">
@@ -545,7 +530,7 @@ $setting = App\Models\SiteSetting::find(1);
                             <li class="menu-item-has-children">
                                 <a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="page-about.html">About Us</a></li>
+                                    <li><a href="#">About Us</a></li>
                                     <li><a href="page-contact.html">Contact</a></li>
                                     <li><a href="page-account.html">My Account</a></li>
                                     <li><a href="page-login.html">Login</a></li>

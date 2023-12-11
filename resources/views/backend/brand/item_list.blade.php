@@ -1,7 +1,5 @@
-@extends('vendor.vendor_dashboard')
-@section('vendor')
-
-
+@extends('admin.admin_dashboard')
+@section('admin')
 <div class="page-content">
 	<!--breadcrumb-->
 	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -27,7 +25,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table id="example" class="table table-striped table-bordered" style="width:100%">
+				<table id="example" class="table table-striped table-bordered" style="width:70%">
 					<thead>
 						<tr>
 							<th>S.no.</th>

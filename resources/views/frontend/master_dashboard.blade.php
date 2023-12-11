@@ -37,6 +37,10 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+    <!-- plugins -->
+    <link href="assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet" />    
+    <!-- plugins -->
+
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
@@ -334,6 +338,8 @@
 
 
  </script>
+
+
 
 
 <script type="text/javascript">
@@ -926,6 +932,30 @@ function wishlistRemove(id){
 
 
 </script>
+<!-- #################################### -->
+<!-- datatable -->
+<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+    <script>
+		$(document).ready(function() {
+			var table = $('#example2').DataTable( {
+				lengthChange: false,
+				buttons: [ 'copy', 'excel', 'pdf', 'print']
+			} );
+		 
+			table.buttons().container()
+				.appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+		} );
+	</script>
+<!-- datatable -->
+
+
+
  <!--  // End Load MY Cart // -->
 
   <!--  ////////////// Start Apply Coupon ////////////// -->
@@ -1058,6 +1088,8 @@ function wishlistRemove(id){
 
 
 </script>
+
+
 
    <!--  ////////////// End Apply Coupon ////////////// -->
 

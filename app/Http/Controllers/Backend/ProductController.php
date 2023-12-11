@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\MultiImg;
 use App\Models\Brand;
+use App\Models\Items;
 use App\Models\Product;
 use App\Models\User;
 use Image;

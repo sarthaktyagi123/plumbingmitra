@@ -22,7 +22,7 @@
      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
 
-    <title>Vendor Login </title> 
+    <title>SalesPerson Login </title> 
 </head>
 
 <body class="bg-login">
@@ -39,7 +39,7 @@
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
-                                        <h3 class="">Vendor Sign in</h3>
+                                        <h3 class="">SalesPerson Sign in</h3>
                                          
                                     </div>
                                      

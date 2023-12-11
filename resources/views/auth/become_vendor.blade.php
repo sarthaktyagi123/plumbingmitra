@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Become Vendor Page </title>
+    <title>Become SalesPerson Page </title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span>  Become Vendor
+                    <span></span>  Become Salesperson
                 </div>
             </div>
         </div>
@@ -40,8 +40,8 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
-                                            <h1 class="mb-5">Become Vendor</h1>
-         <p class="mb-30">Already have an Vendor account? <a href="{{ route('vendor.login') }}">Vendor Login</a></p>
+                                            <h1 class="mb-5">Become Salesperson</h1>
+         <p class="mb-30">Already have an Vendor account? <a href="{{ route('vendor.login') }}">Salesperson Login</a></p>
                                         </div>
 
 
@@ -50,7 +50,7 @@
 
 
     <div class="form-group">
-        <input type="text" id="name" required="" name="name" placeholder="Shop Name" />
+        <input type="text" id="name" required="" name="name" placeholder="Shop Affiliated" value="Kaushik Udyog"/>
     </div>
 
       <div class="form-group">
@@ -114,10 +114,7 @@
                                         <img src="assets/imgs/theme/icons/logo-google.svg" alt="" />
                                         <span>Continue with Google</span>
                                     </a>
-                                    <a href="#" class="social-login apple-login">
-                                        <img src="assets/imgs/theme/icons/logo-apple.svg" alt="" />
-                                        <span>Continue with Apple</span>
-                                    </a>
+
                                 </div>
                             </div>
                         </div>

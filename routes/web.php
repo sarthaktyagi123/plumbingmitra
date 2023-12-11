@@ -47,7 +47,7 @@ use App\Http\Controllers\User\ReviewController;
 |
 */ 
  
-// Route::get('/', function () {
+// Route::get('/', function () {UserController
 //     return view('frontend.index');
 // });
 
@@ -170,7 +170,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 Route::middleware(['auth','role:admin'])->group(function() {
 
 
- // Brand All Route 
+ // Brand and item All Route :
 Route::controller(BrandController::class)->group(function(){
     Route::get('/all/brand' , 'AllBrand')->name('all.brand');
     Route::get('/add/brand' , 'AddBrand')->name('add.brand');
@@ -178,6 +178,14 @@ Route::controller(BrandController::class)->group(function(){
     Route::get('/edit/brand/{id}' , 'EditBrand')->name('edit.brand');
     Route::post('/update/brand' , 'UpdateBrand')->name('update.brand');
     Route::get('/delete/brand/{id}' , 'DeleteBrand')->name('delete.brand');
+
+ //item routes:    
+    Route::get('/item/list', 'ItemList')->name('item.list');
+    Route::get('/item/add', 'ItemAdd')->name('item.add');
+    Route::post('/store/item','StoreItem')->name('store.item');
+    Route::get('/edit/item/{id}' , 'EditItem')->name('item.edit');
+    Route::post('/update/item' , 'UpdateItem')->name('update.item');
+    Route::get('/delete/item/{id}' , 'DeleteItem')->name('item.delete');
 
 });
 
@@ -633,6 +641,7 @@ Route::controller(StripeController::class)->group(function(){
 
 }); 
 
+Route::post('/ucart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 
  // User Dashboard All Route 
 Route::controller(AllUserController::class)->group(function(){
@@ -640,6 +649,8 @@ Route::controller(AllUserController::class)->group(function(){
  Route::get('/user/change/password' , 'UserChangePassword')->name('user.change.password');
 
  Route::get('/user/order/page' , 'UserOrderPage')->name('user.order.page');
+ Route::get('/user/items/page' , 'UserItems')->name('user.item');
+ Route::get('/user/items/cart' , 'UserCart')->name('user.item.cart');
 
  Route::get('/user/order_details/{order_id}' , 'UserOrderDetails');
  Route::get('/user/invoice_download/{order_id}' , 'UserOrderInvoice');  

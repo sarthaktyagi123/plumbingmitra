@@ -26,15 +26,23 @@
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class='bx bx-cookie'></i>
 						</div>
-						<div class="menu-title">Brand Master</div>
+						<div class="menu-title">Item Master</div>
 					</a>
 					<ul>
 						@if(Auth::user()->can('brand.list'))
-						<li> <a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
+						<li> <a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>company name</a>
 						</li>
 						@endif
 						@if(Auth::user()->can('brand.add')) 
-						<li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Add Brand </a>
+						<li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Add comapny name</a>
+						</li>
+						 @endif
+						 @if(Auth::user()->can('item.list'))
+						 <li> <a href="{{ route('item.list') }}"><i class="bx bx-right-arrow-alt"></i>All Items</a>
+						</li>
+						 @endif
+						 @if(Auth::user()->can('item.add'))
+						 <li> <a href="{{ route('item.add') }}"><i class="bx bx-right-arrow-alt"></i>add items</a>
 						</li>
 						 @endif
 					</ul>
@@ -61,26 +69,7 @@
 					</ul>
 				</li>
 				@endif
-  @if(Auth::user()->can('subcategory.menu'))
-				<li>
-					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="lni lni-codepen"></i>
-						</div>
-						<div class="menu-title">SubCategory mini master</div>
-					</a>
-					<ul>
-						@if(Auth::user()->can('subcategory.list'))
-						<li> <a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All SubCategory</a>
-						</li>
-						@endif
-						@if(Auth::user()->can('subcategory.add'))
-						<li> <a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
-						</li>
-						@endif
-						 
-					</ul>
-				</li>
-	@endif
+  
               @if(Auth::user()->can('product.menu'))
 				<li>
 					<a href="javascript:;" class="has-arrow">
@@ -188,7 +177,7 @@
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class='lni lni-network'></i>
 						</div>
-						<div class="menu-title">Shop Manage Master </div>
+						<div class="menu-title">Marketting Team Manage Master </div>
 					</a>
 					<ul>
 						<li> <a href="{{ route('inactive.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Inactive Vendor</a>

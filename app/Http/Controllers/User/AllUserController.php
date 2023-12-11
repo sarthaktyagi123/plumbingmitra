@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Items;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
@@ -33,7 +34,17 @@ class AllUserController extends Controller
         $orders = Order::where('user_id',$id)->orderBy('id','DESC')->get();
           return view('frontend.userdashboard.user_order_page',compact('orders'));
     }// End Method 
- 
+    
+    public function UserItems(){
+        $id = Auth::user()->id;
+        $items = Items::latest()->get();
+         return view('frontend.userdashboard.user_items',compact('items'));
+    }
+
+    public function UserCart(){
+       //will be added
+       return view('frontend.userdashboard.user_cart');
+    }
 
     public function UserOrderDetails($order_id){
 
