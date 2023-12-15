@@ -504,7 +504,7 @@ Route::controller(AdminController::class)->group(function(){
 
 /// Frontend Product Details All Route 
 
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/product/details/{id}', [IndexController::class, 'ProductDetails']);
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
 
 Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
@@ -641,7 +641,7 @@ Route::controller(StripeController::class)->group(function(){
 
 }); 
 
-Route::post('/ucart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
+//Route::post('/ucart/data/store/{id}', [CartController::class, 'AddToCartDetailsItem']);
 
  // User Dashboard All Route 
 Route::controller(AllUserController::class)->group(function(){
@@ -658,6 +658,10 @@ Route::controller(AllUserController::class)->group(function(){
  Route::post('/return/order/{order_id}' , 'ReturnOrder')->name('return.order');
 
  Route::get('/return/order/page' , 'ReturnOrderPage')->name('return.order.page');
+ 
+ Route::post('/ucart/data/store', 'AddToCartDetailsItem');
+
+ Route::get('/uproduct/mini/cart', 'AddMiniCart');
 
   // Order Tracking 
   Route::get('/user/track/order' , 'UserTrackOrder')->name('user.track.order');

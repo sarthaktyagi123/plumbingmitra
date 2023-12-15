@@ -2,14 +2,14 @@
 @section('main')
 
 @section('title')
-    {{ $product->product_name }} 
+    {{ $product->item_name }} 
 @endsection
 
 <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a> <span></span> {{ $product['subcategory']['subcategory_name'] }} <span></span>{{ $product->product_name }} 
+                    <span></span> <a href="shop-grid-right.html">{{ $product['company_name'] }}</a> <span></span><span></span>{{ $product->item_name }} 
                 </div>
             </div>
         </div> 
@@ -18,38 +18,16 @@
                 <div class="col-xl-10 col-lg-12 m-auto">
 <div class="product-detail accordion-detail">
     <div class="row mb-50 mt-30">
-        <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
-            <div class="detail-gallery">
-                <span class="zoom-icon"><i class="fi-rs-search"></i></span>
-                <!-- MAIN SLIDES -->
-                <div class="product-image-slider">
-                	@foreach($multiImage as $img)
-                    <figure class="border-radius-10">
-                        <img src="{{ asset($img->photo_name) }} " alt="product image" />
-                    </figure>
-                    @endforeach
-                </div>
-                <!-- THUMBNAILS -->
-                <div class="slider-nav-thumbnails">
-					@foreach($multiImage as $img)
-                    <div><img src="{{ asset($img->photo_name) }}" alt="product image" /></div>
-                     @endforeach
-                  
-                </div>
-            </div>
-            <!-- End Gallery -->
-        </div>
+        
         <div class="col-md-6 col-sm-12 col-xs-12">
             <div class="detail-info pr-30 pl-30">
-            	@if($product->product_qty > 0)
+            	
             	 <span class="stock-status in-stock">In Stock </span>
-            	@else
-            	<span class="stock-status out-stock">Stock Out </span>
-            	@endif
+            	
                 
 
 
-                <h2 class="title-detail" id="dpname"> {{ $product->product_name }} </h2>
+                <h2 class="title-detail" id="dpname"> {{ $product->item_name }} </h2>
                 <div class="product-detail-rating">
                     <div class="product-rate-cover text-end">
 
@@ -85,7 +63,7 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
                 <div class="clearfix product-price-cover">
  @php
     $amount = $product->selling_price - $product->discount_price;
-    $discount = ($amount/$product->selling_price) * 100; 
+    //$discount = ($amount/$product->selling_price) * 100; 
     @endphp
 
  @if($product->discount_price == NULL)
@@ -98,7 +76,7 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
  <div class="product-price primary-color float-left">
             <span class="current-price text-brand">${{ $product->discount_price }}</span>
             <span>
-                <span class="save-price font-md color3 ml-15">{{ round($discount) }}% Off</span>
+                <span class="save-price font-md color3 ml-15"></span>
                 <span class="old-price font-md ml-15">${{ $product->selling_price }}</span>
             </span>
         </div>
@@ -133,15 +111,15 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
      @else
 
-<div class="attr-detail attr-size mb-30">
+<!-- <div class="attr-detail attr-size mb-30">
         <strong class="mr-10" style="width:50px;">Color : </strong>
          <select class="form-control unicase-form-control" id="dcolor">
-         	<option selected="" disabled="">--Choose Color--</option>
-         	@foreach($product_color as $color)
-         	<option value="{{ $color }}">{{ ucwords($color)  }}</option>
-         	@endforeach
+         	<option selected="" disabled="">--Choose Brand--</option>
+         	
+         	<option value="{{ $color }}"></option>
+         	
          </select>
-    </div>
+    </div> -->
 
     
      @endif
@@ -158,8 +136,7 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
  <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
 
-  <input type="hidden" id="vproduct_id" value="{{ $product->vendor_id }}">
-
+  
     <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
 
 
@@ -178,19 +155,18 @@ $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1
 
 <div class="font-xs">
 <ul class="mr-50 float-start">
-<li class="mb-5">Brand: <span class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
+<li class="mb-5">Brand: <span id="dcolor" class="text-brand">{{$product->company_name}}</span></li>
 
-<li class="mb-5">Category:<span class="text-brand"> {{ $product['category']['category_name'] }}</span></li>
+<li class="mb-5">Category:<span class="text-brand">NUll</span></li>
 
-<li>SubCategory: <span class="text-brand">{{ $product['subcategory']['subcategory_name'] }}</span></li>
+<li>SubCategory: <span class="text-brand"></span>NUll</li>
 </ul>
 
 <ul class="float-start">
-<li class="mb-5">Product Code: <a href="#">{{ $product->product_code }}</a></li>
+<li class="mb-5">Product id: <a href="#">{{ $product->id }}</a></li>
 
-<li class="mb-5">Tags: <a href="#" rel="tag"> {{ $product->product_tags }}</a></li>
 
-<li>Stock:<span class="in-stock text-brand ml-5">({{ $product->product_qty }}) Items In Stock</span></li>
+<li>Stock:<span class="in-stock text-brand ml-5">Items In Stock</span></li>
 </ul>
 </div>
                                 </div>
@@ -559,7 +535,7 @@ $reviews = App\Models\Review::where('product_id',$product->id)->latest()->limit(
 
             	 @php
     $amount = $product->selling_price - $product->discount_price;
-    $discount = ($amount/$product->selling_price) * 100;
+    //$discount = ($amount/$product->selling_price) * 100;
 
     @endphp
             <div class="product-badges product-badges-position product-badges-mrg">

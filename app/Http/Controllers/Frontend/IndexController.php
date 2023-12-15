@@ -10,7 +10,8 @@ use App\Models\MultiImg;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User; 
- 
+use App\Models\Items;
+
 class IndexController extends Controller
 {
     public function Index()
@@ -79,27 +80,26 @@ class IndexController extends Controller
 
 
 
+    public function ProductDetails($id){
+
+        $product = Items::findOrFail($id);
+
+        $companyname = $product->company_name;
+        //$product_color = explode(',', $color);
+
+        $others = $product->other_specialty;
+        //$product_size = explode(',', $size);
+
+        //$multiImage = MultiImg::where('product_id',$id)->get();
+
+        //$cat_id = $product->company_name;
+        $relatedProduct = Items::where('company_name',$companyname)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
+
+        return view('frontend.product.product_details',compact('product','companyname','others','relatedProduct'));
+
+     } // End Method
 
 
-
-     public function ProductDetails($id,$slug){
-
-        $product = Product::findOrFail($id);
-
-        $color = $product->product_color;
-        $product_color = explode(',', $color);
-
-        $size = $product->product_size;
-        $product_size = explode(',', $size);
-
-        $multiImage = MultiImg::where('product_id',$id)->get();
-
-        $cat_id = $product->category_id;
-        $relatedProduct = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
-
-        return view('frontend.product.product_details',compact('product','product_color','product_size','multiImage','relatedProduct'));
-
-     } // End Method 
 
 
      public function VendorDetails($id){

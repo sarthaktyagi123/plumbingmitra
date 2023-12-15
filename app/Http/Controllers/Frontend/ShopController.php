@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User; 
+use App\Models\Items; 
 
 
 class ShopController extends Controller
@@ -41,12 +42,13 @@ class ShopController extends Controller
       $categories = Category::orderBy('category_name','ASC')->get(); 
       $brands = Brand::orderBy('brand_name','ASC')->get();
       $newProduct = Product::orderBy('id','DESC')->limit(3)->get();
+      $items = Items::orderBy('item_name','ASC')->get();
 
-      return view('frontend.product.shop_page',compact('products','categories','newProduct','brands'));
+      return view('frontend.product.shop_page',compact('products','categories','newProduct','brands','items'));
 
     } // End Method 
 
-
+    
     public function ShopFilter(Request $request){
 
         $data = $request->all();

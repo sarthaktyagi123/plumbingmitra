@@ -288,21 +288,21 @@
 
      var product_name = $('#dpname').text();  
      var id = $('#dproduct_id').val();
-     var vendor = $('#vproduct_id').val();
-     var color = $('#dcolor option:selected').text();
-     var size = $('#dsize option:selected').text();
+    // var vendor = $('#vproduct_id').val();
+     //var color = $('#dcolor option:selected').text();
+     var company = $('#dcolor option:selected').text();
      var quantity = $('#dqty').val(); 
      $.ajax({
         type: "POST",
         dataType : 'json',
         data:{
-            color:color, size:size, quantity:quantity,product_name:product_name,vendor:vendor
+            company:company,quantity:quantity,product_name:product_name
         },
         url: "/dcart/data/store/"+id,
         success:function(data){
-            miniCart();
+            //miniCart();
           
-            // console.log(data)
+            console.log(data)
 
             // Start Message 
 
@@ -336,6 +336,47 @@
 
      /// Eend Details Page Add To Cart Product 
 
+     function addToCartDetailsItems(itemId) {
+            var item_name = $('#item_name_' + itemId).text();
+            var id = $('#dproduct_id_' + itemId).text();
+            var company_name = $('#company_name_' + itemId).text();
+            var other_specialty = $('#other_specialty_' + itemId).text();
+        
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    item_name: item_name,
+                    company_name: company_name,
+                    other_specialty: other_specialty
+                },
+                url: "/ucart/data/store/" + id,
+                success: function(data) {
+                    // Handle success response
+                    console.log(data);
+
+                    // Display success or error message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: data.success ? 'success' : 'error',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    Toast.fire({
+                        type: data.success ? 'success' : 'error',
+                        title: data.success || data.error
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+
+     /// Eend Details Page Add To Cart Product 
 
  </script>
 
@@ -793,7 +834,7 @@ function wishlistRemove(id){
             <td class="custome-checkbox pl-30">
                  
             </td>
-            <td class="image product-thumbnail pt-40"><img src="/${value.options.image} " alt="#"></td>
+            <td></td>
             <td class="product-des product-name">
                 <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="shop-product-right.html">${value.name} </a></h6>
                 
@@ -803,9 +844,9 @@ function wishlistRemove(id){
             </td>
 
               <td class="price" data-title="Price">
-              ${value.options.color == null
+              ${value.options.company == null
                 ? `<span>.... </span>`
-                : `<h6 class="text-body">${value.options.color} </h6>`
+                : `<h6 class="text-body">${value.options.company} </h6>`
               } 
             </td>
 

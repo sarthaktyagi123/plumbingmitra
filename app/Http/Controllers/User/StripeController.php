@@ -138,8 +138,8 @@ class StripeController extends Controller
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
-            'district_id' => $request->district_id,
-            'state_id' => $request->state_id,
+            'district_id' => $request->district_id ,
+            'state_id' => '1', 
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -190,9 +190,9 @@ class StripeController extends Controller
             OrderItem::insert([
                 'order_id' => $order_id,
                 'product_id' => $cart->id,
-                'vendor_id' => $cart->options->vendor,
-                'color' => $cart->options->color,
-                'size' => $cart->options->size,
+                //'vendor_id' => $cart->options->vendor,
+                'company' => $cart->options->company,
+                //'size' => $cart->options->size,
                 'qty' => $cart->qty,
                 'price' => $cart->price,
                 'created_at' =>Carbon::now(),

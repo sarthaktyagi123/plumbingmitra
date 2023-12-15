@@ -48,27 +48,20 @@
 						</tr>
 					</thead>
 					<tbody>
-					@foreach($items as $key => $item)    
-						<tr>
-							<td>{{ $key+1 }}</td>
-							<td>{{ $item->item_name }} </td>
-							<td>{{ $item->company_name}}</td>
-							<td>{{ $item->parent_category }}</td>
-							<td> {{ $item->other_specialty }} </td>
-							<td>
-							    <input type="hidden" id="dproduct_id" value="{{ $item->id }}">
-                                <input type="hidden" id="item_name" value="{{ $item->item_name }}">
-                                <input type="hidden" id="company_name" value="{{ $item->company_name }}">
-                                <input type="hidden" id="other_specialty" value="{{ $item->other_specialty }}">
-                                
+                        @foreach($items as $key => $item)    
+                            <tr>
+                                <td id="dproduct_id">{{ $item->id }}</td>
+                                <td id="item_name_{{ $item->id }}">{{ $item->item_name }}</td>
+                                <td id="company_name_{{ $item->id }}">{{ $item->company_name }}</td>
+                                <td>{{ $item->parent_category }}</td>
+                                <td id="other_specialty_{{ $item->id }}">{{ $item->other_specialty }}</td>
+                                <td>
+                                <a href="{{ route('shop.page') }}" class="btn btn-info">Lets shop</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
 
-                                <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-
-                            </td>
-
-						</tr>
-					@endforeach	
-					</tbody>
 					<tfoot>
 						<tr>
 							<th>S.no.</th>

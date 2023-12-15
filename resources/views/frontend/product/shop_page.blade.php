@@ -27,7 +27,7 @@
                 <div class="col-lg-4-5">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
- <p>We found <strong class="text-brand">{{ count($products) }}</strong> items for you!</p>
+ <p>We found <strong class="text-brand">{{ count($items) }}</strong> items for you!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
@@ -73,47 +73,42 @@
                     <div class="row product-grid">
 
 
-          @foreach($products as $product)
+          @foreach($items as $item)
     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
             <div class="product-img-action-wrap">
                 <div class="product-img product-img-zoom">
-                    <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}">
-                        <img class="default-img" src="{{ asset( $product->product_thambnail ) }}" alt="" />
+                    <a href="{{ url('product/details/'.$item->id) }}">
+                        
                         
                     </a>
                 </div>
                 <div class="product-action-1">
-                    <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}" onclick="addToWishList(this.id)"  ><i class="fi-rs-heart"></i></a>
+                    <a aria-label="Add To Wishlist" class="action-btn" id="{{ $item->id }}" onclick="addToWishList(this.id)"  ><i class="fi-rs-heart"></i></a>
                     
-   <a aria-label="Compare" class="action-btn"  id="{{ $product->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
+   <a aria-label="Compare" class="action-btn"  id="{{ $item->id }}" onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
 
-   <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $product->id }}" onclick="productView(this.id)" ><i class="fi-rs-eye"></i></a>
+   <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal" id="{{ $item->id }}" onclick="productView(this.id)" ><i class="fi-rs-eye"></i></a>
                 </div>
 
     @php
-    $amount = $product->selling_price - $product->discount_price;
-    $discount = ($amount/$product->selling_price) * 100;
+    //$amount = $product->selling_price - $product->discount_price;
+    //$discount = ($amount/$product->selling_price) * 100;
 
     @endphp
 
 
                 <div class="product-badges product-badges-position product-badges-mrg">
 
-                    @if($product->discount_price == NULL)
-                    <span class="new">New</span>
-                    @else
-                    <span class="hot"> {{ round($discount) }} %</span>
-                    @endif
-
+                  
                     
                 </div>
             </div>
             <div class="product-content-wrap">
                 <div class="product-category">
-                    <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                    <a href="shop-grid-right.html">{{ $item['compamy_name'] }}</a>
                 </div>
-                <h2><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"> {{ $product->product_name }} </a></h2>
+                <h2><a href="{{ url('product/details/'.$item->id) }}"> {{ $item->item_name }} </a></h2>
                 <div class="product-rate-cover">
                     <div class="product-rate d-inline-block">
                         <div class="product-rating" style="width: 90%"></div>
@@ -121,10 +116,10 @@
                     <span class="font-small ml-5 text-muted"> (4.0)</span>
                 </div>
                 <div>
-                    @if($product->vendor_id == NULL)
+                    @if($item->vendor_id == NULL)
 <span class="font-small text-muted">By <a href="vendor-details-1.html">Owner</a></span>
                     @else
-  <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+  <span class="font-small text-muted">By <a href="vendor-details-1.html">{{ $item['item_name'] }}</a></span>
 
                     @endif
                    
@@ -133,23 +128,23 @@
                 </div>
                 <div class="product-card-bottom">
 
-                    @if($product->discount_price == NULL)
+                    @if($item->discount_price == NULL)
                      <div class="product-price">
-                        <span>${{ $product->selling_price }}</span>
+                        <span></span>
                        
                     </div>
 
                     @else
                     <div class="product-price">
-                        <span>${{ $product->discount_price }}</span>
-                        <span class="old-price">${{ $product->selling_price }}</span>
+                        <span>${{ $item->discount_price }}</span>
+                        <span class="old-price">${{ $item->selling_price }}</span>
                     </div>
                     @endif
 
 
                      
                     <div class="add-cart">
-                        <a class="add" href="{{ url('product/details/'.$product->id.'/'.$product->product_slug) }}"><i class="fi-rs-shopping-cart mr-5"></i>Details </a>
+                        <a class="add" href="{{ url('product/details/'.$item->id) }}"><i class="fi-rs-shopping-cart mr-5"></i>Details </a>
                     </div>
                 </div>
             </div>
@@ -213,28 +208,6 @@
         </div>
         <div class="list-group">
             <div class="list-group-item mb-10 mt-10">
-
-
-    @if(!empty($_GET['category']))
-    @php
-    $filterCat = explode(',',$_GET['category']);
-    @endphp
-
-    @endif
-
-
-                <label class="fw-900">Category</label>
-@foreach($categories as $category)
-@php 
-$products = App\Models\Product::where('category_id',$category->id)->get(); 
-@endphp
-
-    <div class="custome-checkbox">
-        <input class="form-check-input" type="checkbox" name="category[]" id="exampleCheckbox{{ $category->id }}" value="{{ $category->category_slug }}" @if(!empty($filterCat) && in_array($category->category_slug,$filterCat)) checked @endif  onchange="this.form.submit()" />
-        <label class="form-check-label" for="exampleCheckbox{{ $category->id }}"><span>{{ $category->category_name }} ({{ count($products) }})</span></label>
-        
-    </div>
-@endforeach
 
 
     @if(!empty($_GET['brand']))

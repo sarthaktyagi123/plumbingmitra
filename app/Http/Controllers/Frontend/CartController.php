@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Items;
 use App\Models\Coupon;
 use App\Models\ShipDivision;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -72,48 +73,43 @@ class CartController extends Controller
             Session::forget('coupon');
         }
 
-        $product = Product::findOrFail($id);
+        $product = Items::findOrFail($id);
 
-        if ($product->discount_price == NULL) {
-
+        
             Cart::add([
 
                 'id' => $id,
                 'name' => $request->product_name,
                 'qty' => $request->quantity,
-                'price' => $product->selling_price,
+                'price' => $product->parent_category,
                 'weight' => 1,
                 'options' => [
-                    'image' => $product->product_thambnail,
-                    'color' => $request->color,
-                    'size' => $request->size,
-                    'vendor' => $request->vendor,
-                ],
+                    'color' => $request->company_name,
+                    ],
             ]);
 
    return response()->json(['success' => 'Successfully Added on Your Cart' ]);
 
-        }else{
+        
+    }// End Method
 
-            Cart::add([
+    public function AddToCartDetailsItem(Request $request, $id){
 
-                'id' => $id,
-                'name' => $request->product_name,
-                'qty' => $request->quantity,
-                'price' => $product->discount_price,
-                'weight' => 1,
-                'options' => [
-                    'image' => $product->product_thambnail,
-                    'color' => $request->color,
-                    'size' => $request->size,
-                    'vendor' => $request->vendor,
-                ],
-            ]);
-
-   return response()->json(['success' => 'Successfully Added on Your Cart' ]);
-
-        }
-
+        $product = Items::findOrFail($id);
+    
+        Cart::add([
+            'id' => $id,
+            'name' => $request->item_name,
+            'qty' => $request->other_specialty,
+            'price' => $product->parent_category, // Corrected variable name to $product
+            'weight' => 1,
+            'options' => [
+                'company_name' => $request->company_name,
+            ],
+        ]);
+    
+        return response()->json(['success' => 'Successfully Added on Your Cart']);
+    
     }// End Method
 
 
